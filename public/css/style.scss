@@ -1,0 +1,262 @@
+@import 'variables';
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: $background-color;
+  overflow: hidden;
+}
+
+.button {
+  padding: 10px;
+  font-size: 22px;
+}
+
+header {
+  background-color: $primary-light;
+  height: $header-height;
+  width: 100%;
+  color: $primary-text;
+  box-shadow: $shadow;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+
+  #logo {
+    text-transform: uppercase;
+    font-size: 30px;
+    font-family: $font;
+    font-weight: 600;
+    padding: 0 20px;
+
+    span {
+      text-transform: lowercase;
+      font-size: 14px;
+    }
+  }
+
+  #search-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 70px;
+
+    #search {
+      border-bottom: 1px solid $primary-text;
+    }
+
+    input {
+      background-color: transparent;
+      border: none;
+      color: $primary-text;
+      font-size: 18px;
+      padding-left: 5px;
+    }
+
+    input:focus {
+      outline: none !important;
+    }
+  }
+
+  nav {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 0 20px;
+  }
+}
+
+main {
+  padding-top: $header-height;
+  width: 100%;
+  height: 100%;
+  display: flex;
+
+  .button-holder {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    padding: 25px;
+    font-size: 80px;
+    color: $accent;
+    text-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2), 0px 8px 10px rgba(0, 0, 0, 0.14), 0px 3px 14px rgba(0, 0, 0, 0.12);
+  }
+  .button-holder:first-child {
+    flex-direction: row-reverse;
+  }
+
+  .news-card {
+    height: 441px;
+    width: 784px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: $secondary-text;
+    font-family: $font;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-shadow: 0px -5px 5px -3px rgba(0, 0, 0, 0.2), 0px -8px 10px 1px rgba(0, 0, 0, 0.14), 0px -3px 14px 2px rgba(0, 0, 0, 0.12);
+    transition: all 300ms linear;
+    user-select: none;
+
+    .headline {
+      flex-grow: 1;
+      display: flex;
+      align-items: flex-end;
+      font-size: 30px;
+      font-weight: 600;
+      padding-bottom: 10px;
+    }
+
+    .info {
+      display: flex;
+      font-size: 12px;
+      padding-bottom: 10px;
+    }
+
+    .source {
+      border-right: 1px solid $secondary-text;
+      padding-right: 10px;
+    }
+
+    .time {
+      border-left: 1px solid $secondary-text;
+      padding-left: 10px;
+    }
+
+    .description {
+      font-size: 22px;
+    }
+  }
+
+  #cards-holder > .news-card{
+    display: none;
+  }
+
+  #slideshow {
+    position: relative;
+    height: 441px;
+    width: 784px;
+    margin: 60px auto;
+    z-index: 1;
+
+    .previous {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+
+    .one {
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 4;
+    }
+    
+    .two {
+      width: 744px;
+      height: 418.5px;
+      position: absolute;
+      top: -20px;
+      left: 20px;
+      z-index: 3;
+      padding: 0;
+    }
+
+    .three {
+      width: 704px;
+      height: 396px;
+      position: absolute;
+      top: -40px;
+      left: 40px;
+      z-index: 2;
+    }
+  }
+}
+
+#news-card-template {
+  display: none;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+}
+
+.slideDown {
+  animation-name: slideDown;
+  z-index: 5 !important;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 1;
+    transform: translateY(100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+.slideUp {
+  animation-name: slideUp;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+.fadeOut {
+  animation-name: fadeOut;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+.fadeIn {
+  animation-name: fadeIn;
+}
+
+.animated {
+  animation-duration: 500ms;
+  animation-fill-mode: both;
+}

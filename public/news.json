@@ -1,0 +1,246 @@
+{
+  "status": "ok",
+  "totalResults": 20,
+  "articles": [
+    {
+      "source": {
+        "id": null,
+        "name": "Fool.com"
+      },
+      "author": "Rich Smith",
+      "title": "Tesla Gets a Downgrade, but 2 Analysts Cease Coverage",
+      "description": "One analyst downgrades -- but two more drop their cautionary ratings.",
+      "url": "https://www.fool.com/investing/2018/08/21/tesla-gets-a-downgrade-but-2-analysts-cease-covera.aspx",
+      "urlToImage": "https://g.foolcdn.com/image/?url=https%3A%2F%2Fg.foolcdn.com%2Feditorial%2Fimages%2F492250%2Ftesla-model-3.JPG&h=630&w=1200&op=resize",
+      "publishedAt": "2018-08-21T19:41:07Z"
+    },
+    {
+      "source": {
+        "id": "the-wall-street-journal",
+        "name": "The Wall Street Journal"
+      },
+      "author": null,
+      "title": "JPMorgan To Offer Free Trading for Bank Customers",
+      "description": null,
+      "url": "https://www.wsj.com/articles/jpmorgan-to-offer-free-trading-for-bank-customers-1534865952",
+      "urlToImage": null,
+      "publishedAt": "2018-08-21T19:36:31Z"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "Marketwatch.com"
+      },
+      "author": "Barbara Kollmeyer, Anneken Tappe",
+      "title": "Dollar extends slide as Trump Fed criticism weighs, Kaplan sees end of rate hikes",
+      "description": "Trump’s complaints about Fed policies continue to rattle investors, sending the dollar lower for a fifth session.",
+      "url": "https://www.marketwatch.com/story/dollars-losing-streak-stretches-to-five-after-trump-complaints-about-fed-2018-08-21",
+      "urlToImage": "http://s.marketwatch.com/public/resources/MWimages/MW-FY334_jerome_ZG_20171114152430.jpg",
+      "publishedAt": "2018-08-21T18:34:00Z"
+    },
+    {
+      "source": {
+        "id": "the-wall-street-journal",
+        "name": "The Wall Street Journal"
+      },
+      "author": null,
+      "title": "American Airlines Pares International Flights",
+      "description": null,
+      "url": "https://www.wsj.com/articles/american-airlines-pares-international-flights-1534868569",
+      "urlToImage": null,
+      "publishedAt": "2018-08-21T18:14:06Z"
+    },
+    {
+      "source": {
+        "id": "the-wall-street-journal",
+        "name": "The Wall Street Journal"
+      },
+      "author": null,
+      "title": "Uber Fills CFO Job, Vacant Since 2015",
+      "description": null,
+      "url": "https://www.wsj.com/articles/uber-fills-cfo-job-vacant-since-2015-1534867204",
+      "urlToImage": null,
+      "publishedAt": "2018-08-21T18:12:55Z"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "Startribune.com"
+      },
+      "author": "Paul Walsh",
+      "title": "Federal marshals mistakenly removed from plane at MSP and cuffed",
+      "description": "A flight attendant thought there was a civilian aboard with a gun, according to the TSA.",
+      "url": "http://www.startribune.com/police-mistakenly-apprehend-federal-air-marshal-on-plane-at-msp/491368931/",
+      "urlToImage": "http://stmedia.stimg.co/BX133_56AF_9+(1).JPG?h=630&w=1200&fit=crop&bg=999&crop=faces",
+      "publishedAt": "2018-08-21T17:53:51Z"
+    },
+    {
+      "source": {
+        "id": "the-wall-street-journal",
+        "name": "The Wall Street Journal"
+      },
+      "author": null,
+      "title": "US Stocks Poised to Enter Longest-Ever Bull Market",
+      "description": null,
+      "url": "https://www.wsj.com/articles/u-s-stocks-poised-to-enter-longest-ever-bull-market-1534843800",
+      "urlToImage": null,
+      "publishedAt": "2018-08-21T17:35:00Z"
+    },
+    {
+      "source": {
+        "id": "cnn",
+        "name": "CNN"
+      },
+      "author": "Paul R. La Monica",
+      "title": "Cannabis stocks soar to new highs",
+      "description": "Canadian cannabis stocks Cronos and Tilray are surging after announcing plans to sell legal marijuana in Canada. The investment by Corona owner Constellation Brands in fellow cannabis company Canopy Growth is helping too.",
+      "url": "https://money.cnn.com/2018/08/21/news/companies/marijuana-stocks-cronos-tilray-canopy-growth/index.html",
+      "urlToImage": "https://i2.cdn.turner.com/money/dam/assets/180607162412-canada-marijuana-780x439.jpg",
+      "publishedAt": "2018-08-21T17:31:00Z"
+    },
+    {
+      "source": {
+        "id": "business-insider",
+        "name": "Business Insider"
+      },
+      "author": "Kate Taylor",
+      "title": "Olive Garden is selling a pass that gives you a year of unlimited pasta for just $300",
+      "description": "Olive Garden's never-ending pasta passes are...",
+      "url": "http://uk.businessinsider.com/olive-garden-sells-year-long-unlimited-pasta-pass-2018-8",
+      "urlToImage": "http://static6.uk.businessinsider.com/image/5b7b17557708e90d9b44c8c9-1190-625/olive-garden-is-selling-a-pass-that-gives-you-a-year-of-unlimited-pasta-for-just-300.jpg",
+      "publishedAt": "2018-08-21T17:06:49Z"
+    },
+    {
+      "source": {
+        "id": "the-washington-post",
+        "name": "The Washington Post"
+      },
+      "author": "https://www.facebook.com/maura.judkis",
+      "title": "I tried one of Chick-fil-A's new meal kits, and I have good news and bad news",
+      "description": "It was quick and easy to prepare, and tasted good -- but then regret started to set in.",
+      "url": "https://www.washingtonpost.com/news/voraciously/wp/2018/08/21/i-tried-one-of-chick-fil-as-new-meal-kits-and-i-have-good-news-and-bad-news/",
+      "urlToImage": "https://www.washingtonpost.com/resizer/iX1A0u9y1nKvLrcd6HvXeRV50Io=/1484x0/arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/FFK57D5WSU4UHOIT4Q72WISBVY.jpg",
+      "publishedAt": "2018-08-21T16:02:01Z"
+    },
+    {
+      "source": {
+        "id": "the-wall-street-journal",
+        "name": "The Wall Street Journal"
+      },
+      "author": null,
+      "title": "Toll Brothers Profit Jumps as Buyers Continue Spending on Luxury Homes",
+      "description": null,
+      "url": "https://www.wsj.com/articles/toll-brothers-profit-jumps-as-buyers-continue-spending-on-luxury-homes-1534858353",
+      "urlToImage": null,
+      "publishedAt": "2018-08-21T14:39:00Z"
+    },
+    {
+      "source": {
+        "id": "cnn",
+        "name": "CNN"
+      },
+      "author": "Ivana Kottasová",
+      "title": "Goldman Sachs will pay for mothers to ship breast milk home",
+      "description": "Goldman Sachs will now pay for women employees to ship breast milk home when they're traveling for business.",
+      "url": "https://money.cnn.com/2018/08/21/news/companies/goldman-sachs-breastfeeding-shipping/index.html",
+      "urlToImage": "https://i2.cdn.turner.com/money/dam/assets/150828143554-goldman-sachs-780x439.jpg",
+      "publishedAt": "2018-08-21T14:38:00Z"
+    },
+    {
+      "source": {
+        "id": "business-insider",
+        "name": "Business Insider"
+      },
+      "author": "Linette Lopez",
+      "title": "Internal documents reveal the grueling way Tesla hit its 5000 Model 3 target",
+      "description": "Internal documents reveal the grueling way Tesla hit its 5,000 Model 3 target",
+      "url": "https://www.businessinsider.com/tesla-hit-model-3-target-by-reworking-thousands-of-cars-2018-8",
+      "urlToImage": "https://amp.businessinsider.com/images/5b7b095ae361c01c008b5121-750-375.jpg",
+      "publishedAt": "2018-08-21T14:31:27Z"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "Forbes.com"
+      },
+      "author": null,
+      "title": "Microsoft Tries To Stop Russians Hacking Republican Groups As Midterms Loom",
+      "description": null,
+      "url": "https://www.forbes.com/sites/thomasbrewster/2018/08/21/microsoft-tries-to-stop-russians-hacking-republican-groups-as-midterms-loom/",
+      "urlToImage": null,
+      "publishedAt": "2018-08-21T13:24:43Z"
+    },
+    {
+      "source": {
+        "id": "techcrunch",
+        "name": "TechCrunch"
+      },
+      "author": "Ingrid Lunden",
+      "title": "Slack confirms it has raised $427M at a post-money valuation of over $7.1B",
+      "description": "Slack, the workplace communications platform, has taken off like a rocket since launching in 2013 and now has more than 8 million daily active users and 70,000 teams paying to use it. Now the startup of the same name has closed its latest round of funding to …",
+      "url": "https://techcrunch.com/2018/08/21/slack-confirms-it-has-raised-427m-at-a-post-money-valuation-of-over-7-1b/",
+      "urlToImage": "https://techcrunch.com/wp-content/uploads/2018/02/slack-money.png?w=711",
+      "publishedAt": "2018-08-21T13:01:47Z"
+    },
+    {
+      "source": {
+        "id": "cbs-news",
+        "name": "CBS News"
+      },
+      "author": "Emily Tillett",
+      "title": "22 states and DC urge court to vacate and reverse FCC rollback of net neutrality",
+      "description": "The group of state attorneys general argue a free and open internet is \"critical\" to American democracy",
+      "url": "https://www.cbsnews.com/news/22-states-and-d-c-urge-court-to-vacate-and-reverse-fcc-rollback-of-net-neutrality/",
+      "urlToImage": "https://cbsnews3.cbsistatic.com/hub/i/r/2017/07/12/2d1d6cee-25fc-48fd-94b3-86683cf30eeb/thumbnail/1200x630g9/a2a950d56dcb208d1fc8e707cc999148/net-neutrality-protest-679317424.jpg",
+      "publishedAt": "2018-08-21T12:25:22Z"
+    },
+    {
+      "source": {
+        "id": "usa-today",
+        "name": "USA Today"
+      },
+      "author": "Ben Mutzabaugh",
+      "title": "Allegiant adds three new cities in nine-route expansion",
+      "description": "The new cities joining Allegiant’s route map are Albany, New York; St. George, Utah; and Tucson, Arizona. Also growing: Allegiant's base in Punta Gorda, Florida.",
+      "url": "https://www.usatoday.com/story/travel/flights/todayinthesky/2018/08/21/allegiant-air-albany-tucson-utah-florida-flights/1045780002/",
+      "urlToImage": "https://www.gannett-cdn.com/presto/2018/08/20/USAT/6e423218-cca9-4247-b1b3-004d794879c8-Allegiant-Airbus.jpg?crop=5615,3158,x1,y174&width=3200&height=1680&fit=bounds",
+      "publishedAt": "2018-08-21T07:09:07Z"
+    },
+    {
+      "source": {
+        "id": "techcrunch",
+        "name": "TechCrunch"
+      },
+      "author": null,
+      "title": "Costco now supports Apple Pay across all of its US stores",
+      "description": null,
+      "url": "https://techcrunch.com/2018/08/20/costco-apple-pay/",
+      "urlToImage": null,
+      "publishedAt": "2018-08-21T04:24:32Z"
+    },
+    {
+      "source": {
+        "id": "reuters",
+        "name": "Reuters"
+      },
+      "author": "Eric M. Johnson",
+      "title": "Paul Allen's space firm details plans for rockets, cargo vehicle",
+      "description": "The space company of billionaire Microsoft co-founder Paul Allen on Monday unveiled details of medium-lift rockets and a reusable space cargo plane it is developing, injecting more competition into the lucrative launch services market.",
+      "url": "https://www.reuters.com/article/us-space-paulallen/paul-allens-space-firm-details-plans-for-rockets-cargo-vehicle-idUSKCN1L52AY",
+      "urlToImage": "https://s3.reutersmedia.net/resources/r/?m=02&d=20180821&t=2&i=1295735930&w=1200&r=LYNXNPEE7K00M",
+      "publishedAt": "2018-08-20T23:37:28Z"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "Dailywire.com"
+      },
+      "author": "Amanda Prestigiacomo",
+      "title": "NO JUICE FOR YOU: California Unleashes Most Nanny State Bill Yet",
+      "description": "California is home to some of the most absurd nanny state laws in the union: defy a plastic straw ban and you might find yourself behind bars; buy a Happy Meal for your scream",
+      "url": "https://www.dailywire.com/news/34733/no-juice-you-california-unleashes-most-nanny-state-amanda-prestigiacomo",
+      "urlToImage": "https://www.dailywire.com/sites/default/files/styles/open_graph/public/uploads/2018/08/meal.jpg?itok=MirMcOvj",
+      "publishedAt": "2018-08-20T17:33:02Z"
+    }
+  ]
+}

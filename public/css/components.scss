@@ -1,0 +1,69 @@
+@import 'variables';
+
+.modal-holder {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 11;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .modal {
+    background-color: $primary-light;
+    box-shadow: $shadow;
+    max-width: 400px;
+    display: grid;
+    grid-template-areas:
+      'icon message'
+      'options options';
+  }
+
+  .icon {
+    grid-area: icon;
+    color: $accent;
+    padding: 20px;
+    justify-self: center;
+    align-self: center;
+    font-size: 24px;
+  }
+
+  .message {
+    grid-area: message;
+    padding: 20px;
+    color: $secondary-text;
+    font-family: $font;
+  }
+
+  .options {
+    grid-area: options;
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .option {
+    padding: 5px 10px;
+    font-family: $font;
+    color: $primary-text;
+    background-color: $background-color;
+    margin: 0 10px;
+    cursor: pointer;
+    text-transform: capitalize;
+  }
+
+  .preferred {
+    border: 1px solid rgba($accent, 0.5);
+    border-bottom: 1px solid $accent;
+  }
+
+  .option:hover {
+    color: $secondary-text;
+  }
+}
+
+#modal-template {
+  display: none;
+}
