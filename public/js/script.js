@@ -28,6 +28,12 @@ class LocationError extends Error {
     this.name = 'LocationError';
   }
 }
+class InsufficientParametersError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = 'InsufficientParametersError';
+  }
+}
 
 function customFetch(url, data) {
   return fetch(url, {
@@ -237,31 +243,54 @@ function fetchNews(settings) {
     });
 }
 
+function updateSettings(settings) {
+  localStorage.setItem('settings', JSON.stringify(settings));
+}
+
 let settings = localStorage.getItem('settings');
 if(!settings) {
 
-  //Trying to setup by looking for country from IP address
+  //Trying to setup basic news feed settings by looking for country from IP address
   customFetch('/api/setup')
     .then(function(response) {
 
       //If country lookup from IP address fail then fetch Geolocation from browser
-      if(response.status === 'countryLookupFailed')
-        throw new LocationError('Country lookup from IP address failed');
+      if(response.errorType === 'LocationError') {
+        return fetchGeolocation()
+          //sending browser geolocation data for geocoding
+          .then(position => 
+            customFetch('/api/geocodePosition', {
+              latitude: position.coords.latitude,
+              longitude: position.coords.longitude
+            })
+          )
+          //Save the news feed settings configuration file
+          .then(function(response) {
+            if (response.errorType === 'LocationError')
+              throw new LocationError(response.status);
+            else if(response.errorType === 'InsufficientParametersError')
+              throw new InsufficientParametersError(response.status);
+            else
+              updateSettings(response);
+          });
+      }
 
+      //Save the news feed settings configuration file
+      updateSettings(response);
     })
     .catch(function(error) {
-      if(error instanceof LocationError)
-        return fetchGeolocation();
-      else throw error;
-    })
-    .then(function (position) {
+      //tell users we need data to show personalised news feed
+      //show settings page and set settings in localStorage
+      //location errors
+      if(!(error instanceof LocationError))
+        throw error;
 
-      //If user agrees to share geolocation through browser
-      return customFetch('/api/geocodePosition', {
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude
-      });
-
+      alert('we need some data to show personalised news so please chose something in settings');
+      alert('thanks for choosing some shit now saving this in settings and proceeding to show news');
     })
-    .catch(console.log);
+    .then(function() {
+      //now settings are saved in localStorage
+      //fetchnews()
+      alert('fetch news');
+    });
 }
