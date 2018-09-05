@@ -23,9 +23,9 @@ document.querySelector('header nav').addEventListener('click', function(event) {
   }
   //if settings shown then news search is disbaled
   if(clickIntent === 'showSettings')
-    document.querySelector('header #search-container input').disabled = true;
+    document.querySelector('header #search-container').style.display = 'none';
   else
-    document.querySelector('header #search-container input').disabled = false;
+    document.querySelector('header #search-container').style.display = '';
 
   //options nav button click animations
   targetImg.addEventListener('animationend', function f() {
