@@ -21,6 +21,12 @@ document.querySelector('header nav').addEventListener('click', function(event) {
     targetImgNewSrc = '/img/cog.svg';
     clickIntent = 'hideSettings';
   }
+  //if settings shown then news search is disbaled
+  if(clickIntent === 'showSettings')
+    document.querySelector('header #search-container input').disabled = true;
+  else
+    document.querySelector('header #search-container input').disabled = false;
+
   //options nav button click animations
   targetImg.addEventListener('animationend', function f() {
     this.removeEventListener('animationend', f);

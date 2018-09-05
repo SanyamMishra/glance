@@ -465,6 +465,10 @@
       li {
         list-style-position: inside;
       }
+
+      a {
+        color: $secondary-text;
+      }
     }
   }
 }
