@@ -12,7 +12,12 @@
 */
 
 Route::get('/', 'AppController@showHomepage');
+Route::get('/privacy-policy', 'AppController@showPrivacyPolicy');
+
 
 Route::post('/api/setup', 'AppController@setup');
 Route::post('/api/geocodePosition', 'AppController@geocodePosition');
-Route::post('/api/getNews', 'NewsController@getNews');
+Route::post('/api/getSupportedCountriesAndSources', 'AppController@getSupportedCountriesAndSources');
+
+Route::post('/api/fetchNews', 'NewsController@fetchNews');
+Route::post('/api/search', 'NewsController@search');

@@ -16,10 +16,26 @@ body {
   overflow: hidden;
 }
 
-.button {
-  padding: 10px;
-  font-size: 22px;
+/* width */
+::-webkit-scrollbar {
+    width: 7px;
 }
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: darken($primary-text, 20%); 
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: $accent; 
+}
+
+::-webkit-scrollbar-track-piece {
+	background: lighten($primary-light, 5%); 
+}
+
 
 header {
   background-color: $primary-light;
@@ -30,20 +46,28 @@ header {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 10;
-  display: flex;
-  align-items: center;
+  z-index: $header-z-index;
 
-  #logo {
-    text-transform: uppercase;
-    font-size: 30px;
-    font-family: $font;
-    font-weight: 600;
-    padding: 0 20px;
+  #logo-container {
+    position: relative;
+    height: $header-height;
+    display: inline-flex;
+    align-items: center;
+    z-index: $logo-and-nav-z-index;
+    text-decoration: none;
 
-    span {
-      text-transform: lowercase;
-      font-size: 14px;
+    #logo {
+      text-transform: uppercase;
+      font-size: 1.875rem;
+      font-family: $font;
+      font-weight: 600;
+      padding: 0 1.25rem;
+      color: $primary-text;
+
+      span {
+        text-transform: lowercase;
+        font-size: 0.875rem;
+      }
     }
   }
 
@@ -55,7 +79,7 @@ header {
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 70px;
+    height: $header-height;
 
     #search {
       border-bottom: 1px solid $primary-text;
@@ -65,7 +89,7 @@ header {
       background-color: transparent;
       border: none;
       color: $primary-text;
-      font-size: 18px;
+      font-size: 1.125rem;
       padding-left: 5px;
     }
 
@@ -75,35 +99,96 @@ header {
   }
 
   nav {
-    flex-grow: 1;
-    display: flex;
+    height: $header-height;
+    float: right;
+    display: inline-flex;
     flex-direction: row-reverse;
-    padding: 0 20px;
+    align-items: center;
+    padding: 0 1.25rem;
+    z-index: $logo-and-nav-z-index;
+    position: relative;
+
+    .button {
+      padding: 0.3125rem 0.625rem;
+      font-size: 1.375rem;
+      display: flex;
+      align-items: center;
+      background-color: $background-color;
+      border-radius: 0.3125rem;
+      cursor: default;
+
+      .text {
+        font-family: $font;
+        padding-left: 0.3125rem;
+        font-size: 1rem;
+      }
+    }
   }
 }
 
 main {
-  padding-top: $header-height;
+  margin-top: $header-height;
   width: 100%;
-  height: 100%;
+  height: calc(100% - #{$header-height});
   display: flex;
 
   .button-holder {
     flex-grow: 1;
     display: flex;
     align-items: center;
-    padding: 25px;
-    font-size: 80px;
+    padding: 1.5625rem;
+    font-size: 5rem;
     color: $accent;
     text-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2), 0px 8px 10px rgba(0, 0, 0, 0.14), 0px 3px 14px rgba(0, 0, 0, 0.12);
+
+    i {
+      cursor: pointer;
+    }
   }
   .button-holder:first-child {
     flex-direction: row-reverse;
+
+    i {
+      opacity: 0;
+      cursor: auto;
+    }
+  }
+
+  #no-news {
+    position: absolute;
+    top: $header-height;
+    left: 0;
+    font-family: $font;
+    width: 100%;
+    background-color: $background-color;
+    height: calc(100% - #{$header-height});
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1.25rem 0;
+    
+    .title {
+      font-weight: 600;
+      font-size: 2.5rem;
+      color: $accent;
+    }
+    
+    ul {
+      margin-top: 1.25rem;
+      color: $secondary-text;
+      font-size: 1.25rem;
+    }
+  }
+
+  #cards-holder {
+    display: flex;
+    align-items: center;
   }
 
   .news-card {
-    height: 441px;
-    width: 784px;
+    height: calc(100vh - #{$header-height} - 7.5rem);
+    width: calc(((100vh - #{$header-height} - 7.5rem) / 9 ) * 16);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -111,38 +196,39 @@ main {
     font-family: $font;
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    padding: 1.25rem;
     box-shadow: 0px -5px 5px -3px rgba(0, 0, 0, 0.2), 0px -8px 10px 1px rgba(0, 0, 0, 0.14), 0px -3px 14px 2px rgba(0, 0, 0, 0.12);
     transition: all 300ms linear;
     user-select: none;
+    text-decoration: none;
 
     .headline {
       flex-grow: 1;
       display: flex;
       align-items: flex-end;
-      font-size: 30px;
+      font-size: 1.875rem;
       font-weight: 600;
-      padding-bottom: 10px;
+      padding-bottom: 0.625rem;
     }
 
     .info {
       display: flex;
-      font-size: 12px;
-      padding-bottom: 10px;
+      font-size: 0.75rem;
+      padding-bottom: 0.625rem;
     }
 
     .source {
       border-right: 1px solid $secondary-text;
-      padding-right: 10px;
+      padding-right: 0.625rem;
     }
 
     .time {
       border-left: 1px solid $secondary-text;
-      padding-left: 10px;
+      padding-left: 0.625rem;
     }
 
     .description {
-      font-size: 22px;
+      font-size: 1.375rem;
     }
   }
 
@@ -152,10 +238,9 @@ main {
 
   #slideshow {
     position: relative;
-    height: 441px;
-    width: 784px;
-    margin: 60px auto;
-    z-index: 1;
+    height: calc(100vh - #{$header-height} - 7.5rem);
+    width: calc(((100vh - #{$header-height} - 7.5rem) / 9 ) * 16);
+    z-index: $slideshow-z-index;
 
     .previous {
       opacity: 0;
@@ -166,32 +251,103 @@ main {
       position: absolute;
       left: 0;
       top: 0;
-      z-index: 4;
+      z-index: $slideshow-one-z-index;
     }
     
     .two {
-      width: 744px;
-      height: 418.5px;
+      height: calc(100vh - #{$header-height} - 7.5rem - 2.5rem);
+      width: calc(((100vh - #{$header-height} - 7.5rem - 2.5rem) / 9 ) * 16);
       position: absolute;
-      top: -20px;
-      left: 20px;
-      z-index: 3;
+      top: -1.25rem;
+      // left: 20px;
+      left: calc(((((100vh - #{$header-height} - 7.5rem) / 9 ) * 16) - (((100vh - #{$header-height} - 7.5rem - 2.5rem) / 9 ) * 16)) / 2);
+      z-index: $slideshow-two-z-index;
       padding: 0;
     }
 
     .three {
-      width: 704px;
-      height: 396px;
+      height: calc(100vh - #{$header-height} - 7.5rem - 5rem);
+      width: calc(((100vh - #{$header-height} - 7.5rem - 5rem) / 9 ) * 16);
       position: absolute;
-      top: -40px;
-      left: 40px;
-      z-index: 2;
+      top: -2.5rem;
+      // left: 40px;
+      left: calc(((((100vh - #{$header-height} - 7.5rem) / 9 ) * 16) - (((100vh - #{$header-height} - 7.5rem - 5rem) / 9 ) * 16)) / 2);
+      z-index: $slideshow-three-z-index;
+      padding: 0;
     }
   }
 }
 
 #news-card-template {
   display: none;
+}
+
+@keyframes clockHand {
+  from {
+    transform: rotate(-90deg);
+  }
+
+  to {
+    transform: rotate(270deg);
+  }
+}
+
+#wait-clock {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding-top: $header-height;
+  background-clip: content-box;
+  background-color: $background-color;
+  z-index: $wait-clock-z-index;
+  display: none;
+  justify-content: center;
+  align-items: center;
+
+  #clock-rim {
+    position: relative;
+    border: 0.25rem solid $accent;
+    border-radius: 50%;
+    width: 6.25rem;
+    height: 6.25rem;
+    background-image: radial-gradient(circle, $background-color, $primary-light);
+  }
+
+  #minute-hand, #hour-hand {
+    position: absolute;
+    left: calc(50%);
+    top: calc(50% - 0.125rem);
+    height: 0.25rem;
+    background-color: $accent;
+    transform-origin: left;
+    transform: rotate(-90deg);
+    border-radius: 0.3125rem;
+    
+  }
+
+  #minute-hand {
+    width: 2.5rem;
+    animation: clockHand 1.5s linear infinite;
+  }
+
+  #hour-hand {
+    width: 1.875rem;
+    animation: clockHand 18s linear infinite;
+  }
+
+  #text {
+    font-family: $font;
+    color: $primary-text;
+    font-weight: 600;
+    font-size: 3.125rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 100%);
+    display: none;
+  }
 }
 
 @keyframes slideDown {
@@ -207,7 +363,7 @@ main {
 
 .slideDown {
   animation-name: slideDown;
-  z-index: 5 !important;
+  z-index: $slideDown-z-index !important;
 }
 
 @keyframes slideUp {
@@ -233,7 +389,7 @@ main {
 
   to {
     opacity: 0;
-    pointer-events: none;
+    cursor: auto;
   }
 }
 
@@ -248,7 +404,7 @@ main {
 
   to {
     opacity: 1;
-    pointer-events: auto;
+    cursor: pointer;
   }
 }
 
@@ -259,4 +415,123 @@ main {
 .animated {
   animation-duration: 500ms;
   animation-fill-mode: both;
+}
+
+
+@keyframes scrollOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: rotate(90deg);
+  }
+}
+
+.scrollOut {
+  animation-name: scrollOut;
+  animation-duration: 200ms;
+  animation-fill-mode: both;
+}
+
+@keyframes scrollIn {
+
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+    color: $accent;
+    transform: rotate(180deg);
+  }
+}
+
+.scrollIn {
+  animation-name: scrollIn;
+  animation-duration: 200ms;
+  animation-fill-mode: both;
+}
+
+#device-not-supported {
+  width: 100%;
+  margin-top: $header-height;
+  font-family: $font;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1.25rem;
+
+  .title {
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: $accent;
+    text-align: center;
+  }
+  
+  ul {
+    margin-top: 1.25rem;
+    color: $secondary-text;
+    font-size: 1rem;
+  }
+}
+
+@media (min-aspect-ratio: 6/5) and (max-aspect-ratio: 3/2) {
+  main {
+    .news-card {
+      height: calc(100vh - #{$header-height} - 7.5rem);
+      width: calc(((100vh - #{$header-height} - 7.5rem) / 5 ) * 6);
+    }
+
+    #slideshow {
+      height: calc(100vh - #{$header-height} - 7.5rem);
+      width: calc(((100vh - #{$header-height} - 7.5rem) / 5 ) * 6);
+
+      .two {
+        height: calc(100vh - #{$header-height} - 7.5rem - 2.5rem);
+        width: calc(((100vh - #{$header-height} - 7.5rem - 2.5rem) / 5 ) * 6);
+        left: calc(((((100vh - #{$header-height} - 7.5rem) / 5 ) * 6) - (((100vh - #{$header-height} - 7.5rem - 2.5rem) / 5 ) * 6)) / 2);
+      }
+
+      .three {
+        height: calc(100vh - #{$header-height} - 7.5rem - 5rem);
+        width: calc(((100vh - #{$header-height} - 7.5rem - 5rem) / 5 ) * 6);
+        left: calc(((((100vh - #{$header-height} - 7.5rem) / 5 ) * 6) - (((100vh - #{$header-height} - 7.5rem - 5rem) / 5 ) * 6)) / 2);
+      }
+    }
+  }
+}
+
+@media (min-aspect-ratio: 3/2) and (max-aspect-ratio: 16/9) {
+  main {
+    .news-card {
+      height: calc(100vh - #{$header-height} - 7.5rem);
+      width: calc(((100vh - #{$header-height} - 7.5rem) / 2 ) * 3);
+    }
+
+    #slideshow {
+      height: calc(100vh - #{$header-height} - 7.5rem);
+      width: calc(((100vh - #{$header-height} - 7.5rem) / 2 ) * 3);
+
+      .two {
+        height: calc(100vh - #{$header-height} - 7.5rem - 2.5rem);
+        width: calc(((100vh - #{$header-height} - 7.5rem - 2.5rem) / 2 ) * 3);
+        left: calc(((((100vh - #{$header-height} - 7.5rem) / 2 ) * 3) - (((100vh - #{$header-height} - 7.5rem - 2.5rem) / 2 ) * 3)) / 2);
+      }
+
+      .three {
+        height: calc(100vh - #{$header-height} - 7.5rem - 5rem);
+        width: calc(((100vh - #{$header-height} - 7.5rem - 5rem) / 2 ) * 3);
+        left: calc(((((100vh - #{$header-height} - 7.5rem) / 2 ) * 3) - (((100vh - #{$header-height} - 7.5rem - 5rem) / 2 ) * 3)) / 2);
+      }
+    }
+  }
+}
+
+@media (max-width:767px) {
+  main, header nav, header #search-container {
+    display: none;
+  }
 }

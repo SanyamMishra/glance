@@ -7,21 +7,18 @@ class HTTPError extends Error {
     this.code = statusCode;
   }
 }
-
 class JSONParseError extends Error {
   constructor(message) {
     super(message);
     this.name = 'JSONParseError';
   }
 }
-
 class ModalError extends Error {
   constructor(message) {
     super(message);
     this.name = 'ModalError';
   }
 }
-
 class LocationError extends Error {
   constructor(message) {
     super(message);
@@ -53,8 +50,11 @@ function customFetch(url, data) {
     .catch(function (error) {
       if (error instanceof HTTPError)
         throw error;
-      else if (error.name === 'SyntaxError')
+      else if (error.name === 'SyntaxError') {
+        hideWaitClock();
+        showModal('JSON Parse Error', { preferred: 'done' }, 'fas fa-exclamation-circle');
         throw new JSONParseError(error.message);
+      }
     });
 }
 
@@ -103,7 +103,7 @@ function showModal(message, options, icon = 'fas fa-info-circle') {
     document.body.append(modal);
 
     //add an event listener to get clicks on options
-    optionsDiv.addEventListener('click', function optionsEventListener() {
+    optionsDiv.addEventListener('click', function optionsEventListener(event) {
       let target = event.target;
 
       //if option inside modal is clicked then remove it and give response
@@ -168,19 +168,41 @@ function fetchGeolocation() {
     });
 }
 
+function getHumanReadableTime(publishedAt) {
+  let milliseconds = Date.now() - new Date(publishedAt).getTime();
+  let minutes = Math.floor(milliseconds / (1000 * 60));
+  let hours = Math.floor(milliseconds / (1000 * 60 * 60));
+  let days = Math.floor(milliseconds / (1000 * 60 * 60 * 24));
+  let months = Math.floor(milliseconds / (1000 * 60 * 60 * 24 * 30));
+  let years = Math.floor(milliseconds / (1000 * 60 * 60 * 24 * 365));
+  
+  let result, unit;
+  if(years) [result, unit] = [years, 'year'];
+  else if(months) [result, unit] = [months, 'month'];
+  else if(days) [result, unit] = [days, 'day'];
+  else if(hours) [result, unit] = [hours, 'hour'];
+  else if(minutes) [result, unit] = [minutes, 'minute'];
+
+  if(result > 1)
+    unit += 's';
+
+  return `${result} ${unit} ago`;
+}
+
 //Build a new news card
 function buildNewsCard(article) {
   return new Promise(function(resolve, reject) {
     //if any of the needed info missing then abort with error
-    if (!(article.source.name && article.title && article.description && article.urlToImage && article.publishedAt))
+    if (!(article.source.name && article.title && article.description && article.url && article.urlToImage && article.publishedAt))
       return reject(new Error('Insufficient information'));
 
     //cloning template news card and inserting info
     let newsCard = document.querySelector('#news-card-template').cloneNode(true);
     newsCard.removeAttribute('id');
+    newsCard.setAttribute('href', article.url);
     newsCard.querySelector('.headline').innerHTML = article.title;
     newsCard.querySelector('.source').innerHTML = article.source.name;
-    newsCard.querySelector('.time').innerHTML = '1 hour ago';
+    newsCard.querySelector('.time').innerHTML = getHumanReadableTime(article.publishedAt);
     newsCard.querySelector('.description').innerHTML = article.description;
 
     //trying to load the background image of news card
@@ -189,6 +211,7 @@ function buildNewsCard(article) {
     //if image loaded succesfully then return news card
     backgroundImage.onload = function() {
       newsCard.style.backgroundImage += `, url('${article.urlToImage}')`;
+      newsCard.style.backgroundImage += ', linear-gradient(rgba(0,0,0,1), rgba(0,0,0,1))';
       return resolve(newsCard);
     };
 
@@ -201,54 +224,107 @@ function buildNewsCard(article) {
   });
 }
 
-function fetchNews(settings) {
-  fetch('/api/getNews', {
-    method: 'POST',
-    headers: {
-      'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
-      'Content-Type': 'application/json' 
-    },
-    body: JSON.stringify({settings: settings})
-  }).then(response => response.json())
-    .then(function (response) {
-      if (response.status === 'countryNotFound') {
-        fetchCountry()
-          .then(function (country) {
-            settings = {};
-            settings.countries = [country];
-            localStorage.setItem('settings', settings);
-            fetchNews(settings);
-          })
-          .catch(error => { error; });
-      }
+function processNewsJSON(response) {
+  
+  //reset preveious and next buttons of slideshow
+  let [prevButton, nextButton] = document.querySelectorAll('main .button-holder i');
+  prevButton.classList.remove('animated', 'fadeIn');
+  prevButton.classList.add('fadeOut');
+  nextButton.classList.remove('animated', 'fadeIn', 'fadeOut');
 
-      // let newsCardsHolder = document.querySelector('#cards-holder');
-      // let slideshow = newsCardsHolder.querySelector('#slideshow');
+  if (response.errorType === 'InsufficientParametersError')
+    throw new InsufficientParametersError(response.status);
 
-      // for(let article of response.articles) {
-      //   buildNewsCard(article)
-      //     .then(function(newsCard) {
-      //       let slideshowCount = slideshow.children.length;
-      //       if (slideshowCount < 3) {
-      //         slideshowCount++;
-      //         let slideshowCountClass = (slideshowCount == 1) ? 'one' : (slideshowCount == 2) ? 'two' : 'three';
-      //         newsCard.classList.add(slideshowCountClass);
-      //         slideshow.append(newsCard);
-      //       } else {
-      //         newsCardsHolder.append(newsCard);
-      //       }
-      //     })
-      //     .catch(error => {error;});
-      // }
-    });
+  //if no news cards in in response then show no-news banner and hide clock over it
+  if (!response.length) {
+    document.querySelector('main #no-news').style.display = 'flex';
+    hideWaitClock();
+  } else document.querySelector('main #no-news').style.display = 'none';
+
+  
+  let newsCardsHolder = document.querySelector('#cards-holder');
+  let slideshow = newsCardsHolder.querySelector('#slideshow');
+
+  for (let i = 0; i < newsCardsHolder.children.length; i++) {
+    if (newsCardsHolder.children[i].tagName === 'A') {
+      newsCardsHolder.children[i].remove();
+      i--;
+    }
+  }
+
+  for (let i = 0; i < slideshow.children.length; i++) {
+    if (slideshow.children[i].tagName === 'A') {
+      slideshow.children[i].remove();
+      i--;
+    }
+  }
+
+  for (let article of response) {
+    buildNewsCard(article)
+      .then(function (newsCard) {
+        let slideshowCount = slideshow.children.length;
+        if (slideshowCount < 3) {
+          slideshowCount++;
+          let slideshowCountClass = (slideshowCount === 1) ? 'one' : (slideshowCount === 2) ? 'two' : 'three';
+          newsCard.classList.add(slideshowCountClass);
+          slideshow.append(newsCard);
+        } else {
+          newsCardsHolder.append(newsCard);
+        }
+      })
+      //hide wait clock after at least 5 cards are loaded
+      .then(function () {
+        if ((newsCardsHolder.children.length + slideshow.children.length) >= 5)
+          hideWaitClock();
+      })
+      .catch(error => { error; });
+  }
+
+  //if news cards are less than 5 then hide wait clock over them here
+  hideWaitClock();
 }
 
-function updateSettings(settings) {
-  localStorage.setItem('settings', JSON.stringify(settings));
+function fetchNews() {
+  showWaitClock();
+  customFetch('/api/fetchNews', getSettings())
+    .then(response => processNewsJSON(response));
 }
 
-let settings = localStorage.getItem('settings');
-if(!settings) {
+function needUpdation(oldSettings, newSettings) {
+  if(!oldSettings) return true;
+
+  if (oldSettings.countries.length !== newSettings.countries.length || oldSettings.sources.length !== newSettings.sources.length)
+    return true;
+
+  for (let country of oldSettings.countries) {
+    if (!newSettings.countries.includes(country))
+      return true;
+  }
+
+  for (let source of oldSettings.sources) {
+    if (!newSettings.sources.includes(source))
+      return true;
+  }
+
+  return false;
+}
+
+function getSettings() {
+  let settings = localStorage.getItem('settings');
+  return JSON.parse(settings);
+}
+
+function setSettings(settings) {
+  
+  if(needUpdation(getSettings(), settings)) {
+    localStorage.setItem('settings', JSON.stringify(settings));
+    return true;
+  }
+
+  return false;
+}
+
+if(!getSettings()) {
 
   //Trying to setup basic news feed settings by looking for country from IP address
   customFetch('/api/setup')
@@ -271,12 +347,12 @@ if(!settings) {
             else if(response.errorType === 'InsufficientParametersError')
               throw new InsufficientParametersError(response.status);
             else
-              updateSettings(response);
+              setSettings(response);
           });
       }
 
       //Save the news feed settings configuration file
-      updateSettings(response);
+      setSettings(response);
     })
     .catch(function(error) {
       //tell users we need data to show personalised news feed
@@ -287,10 +363,34 @@ if(!settings) {
 
       alert('we need some data to show personalised news so please chose something in settings');
       alert('thanks for choosing some shit now saving this in settings and proceeding to show news');
+      console.log(error);
     })
     .then(function() {
+      initSettingsPage();
       //now settings are saved in localStorage
-      //fetchnews()
-      alert('fetch news');
+      fetchNews();
     });
+} else {
+  //if settings are available then fetch news
+  fetchNews();
 }
+
+function showWaitClock() {
+  let waitClock = document.querySelector('#wait-clock');
+  waitClock.style.display = 'flex';
+}
+
+function hideWaitClock() {
+  let waitClock = document.querySelector('#wait-clock');
+  waitClock.style.display = 'none';
+}
+
+document.querySelector('header #search').addEventListener('submit', function(event) {
+  event.preventDefault();
+  showWaitClock();
+  customFetch('/api/search', {
+    searchTerm: this.querySelector('input').value
+  })
+    // .then(response => console.log(response));
+    .then(response => processNewsJSON(response));
+});

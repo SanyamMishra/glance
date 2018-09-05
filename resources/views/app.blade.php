@@ -10,29 +10,16 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
   <link rel="stylesheet" href="css/components.min.css">
   <link rel="stylesheet" href="css/style.min.css">
+  <link rel="stylesheet" href="css/settings.min.css">
+  <link rel="stylesheet" href="css/flags.css">
 </head>
 <body>
-  <header>
-    <div id="logo">Glance<span>.tk</span></div>
-    <div id="search-container">
-      <div id="search">
-        <i class="fas fa-search"></i>
-        <input type="text" placeholder="Search">
-      </div>      
-    </div>
-    <nav>
-      <span class="button">
-        <i class="fas fa-user-circle"></i>
-      </span>
-      <span class="button" data-tooltip="Options">
-        <i class="fas fa-cog"></i>
-      </span>
-    </nav>
-  </header>
+  
+  @include('header')
   
   <main>
     <div class="button-holder">
-      <i class="fas fa-caret-left"></i>
+      <i class="fas fa-caret-left fadeOut"></i>
     </div>
     <div id="cards-holder">
       <div id="slideshow"></div>
@@ -40,27 +27,33 @@
     <div class="button-holder">
       <i class="fas fa-caret-right"></i>
     </div>
+    <div id="no-news">
+      <div class="title">No news found</div>
+      <ul>
+        <li>Try adding countries and/or sources in settings menu</li>
+        <li>Try different search keywords</li>
+      </ul>
+    </div> 
   </main>
+
+  <div id="device-not-supported">
+    <div class="title">Device not supported</div>
+    <ul>
+      <li>We currently don't support mobile devices</li>
+      <li>We are working on bringing Glance to your mobile devices soon</li>
+      <li>Meanwhile, try Glance in tablets, PCs, laptops and TVs</li>
+    </ul>
+  </div>
+
+  @include('settings')
   
+  @include('componentTemplates')
 
-  <div class="news-card" id="news-card-template" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5))">
-    <div class="headline"></div>
-    <div class="info">
-      <div class="source"></div>
-      <div class="time"></div>
-    </div>
-    <div class="description"></div>
-  </div>
-
-  <div class="modal-holder" id="modal-template">
-    <div class="modal">
-      <div class="icon"><i class=""></i></div>
-      <div class="message"></div>
-      <div class="options"></div>
-    </div>
-  </div>
+  @include('waitClock')
 
   <script src="js/script.js"></script>
   <script src="js/slideshow.js"></script>
+  <script src="js/settings.js"></script>
+  <script src="js/components.js"></script>
 </body>
 </html>
