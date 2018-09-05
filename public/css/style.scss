@@ -458,7 +458,7 @@ main {
   width: 100%;
   margin-top: $header-height;
   font-family: $font;
-  display: flex;
+  display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -533,5 +533,9 @@ main {
 @media (max-width:767px) {
   main, header nav, header #search-container {
     display: none;
+  }
+
+  #device-not-supported {
+    display: flex;
   }
 }

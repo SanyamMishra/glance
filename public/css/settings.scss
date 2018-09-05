@@ -328,11 +328,6 @@
       width: 100%;
       cursor: pointer;
 
-      &:hover {
-        // border: 1px solid $primary-text;
-        // box-shadow: $shadow;
-      }
-
       .name {
         font-weight: 600;
         font-size: 1.875rem;
@@ -387,16 +382,7 @@
       &.selected .checkmark:after {
         display: block;
       }
-
-      /* Style the checkmark/indicator */
-      .checkmark:after {
-        
-      }
     }
-
-
-
-
   }
 
   #about-tab {
