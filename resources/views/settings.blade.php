@@ -53,7 +53,7 @@
 
     <div class="tab" id="about-tab">
       <div id="app-name"><strong>GLANCE</strong>.ml</div>
-      <div id="app-version">version 1.0.4</div>
+      <div id="app-version">version 1.0.5</div>
       <div id="made-with-love">Made with <i class="fas fa-heart"></i> in <span>India</span></div>
       <div id="about-dev">
         <div id="name">Sanyam Mishra</div>

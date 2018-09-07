@@ -39,9 +39,9 @@
   <div id="device-not-supported">
     <div class="title">Device not supported</div>
     <ul>
-      <li>We currently don't support mobile devices</li>
-      <li>We are working on bringing Glance to your mobile devices soon</li>
-      <li>Meanwhile, try Glance in tablets, PCs, laptops and TVs</li>
+      <li>Glance currently do not support mobile devices.</li>
+      <li>We are working on bringing it to your mobile devices soon.</li>
+      <li>Meanwhile, feel free to try Glance in tablets, PCs, laptops, and TVs.</li>
     </ul>
   </div>
 
